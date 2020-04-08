@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Mouvies{% endblock %}
+
+{% block body %}
+    <h1>Create new Mouvies</h1>
+
+    {{ include('mouvies/_form.html.twig') }}
+
+    <a href="{{ path('mouvies_index') }}">back to list</a>
+{% endblock %}

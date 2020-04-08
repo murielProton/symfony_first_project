@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>
+			{% block title %}{% endblock %}
+		</title>
+		{% block stylesheets %}{% endblock %}
+		{% block javascripts %}{% endblock %}
+	</head>
+	<body>
+	{#pour les path il faut aller chercher l'info dans les contrôleurs #}
+		<li>
+			<a href="{{ path('chef') }}">Accueil</a>
+		</li>
+
+		<li>
+			<a href="{{ path('my_profile') }}">Profil</a>
+		</li>
+		<li>
+			<a href="{{ path('mouvie_list_index') }}">Mes Listes</a>
+		</li>
+		<li>
+		<a href="{{ path('mouvie_list', {'page': 1}) }}">Films</a>
+		</li>
+		<li>
+			{#si je suis connecter afficher logout si non login #}
+			<div class="mb-3">
+				{% if app.user %}
+					Vous êtes connecté en tant que 
+					{{ app.user.username }},
+					<a href="{{ path('app_logout') }}">Se Déconnecter</a>
+				{% else %}
+					<a href="{{ path('connect') }}">Se Connecter</a>
+					<a href="{{ path('user_new') }}">Créer Mon Profile</a>
+				{% endif %}
+			</div>
+		</li>
+	</body>
+</html></body></html></li>{% block body %}{% endblock %}</body></html>

@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Mouvies{% endblock %}
+
+{% block body %}
+    <h1>Edit Mouvies</h1>
+
+    {{ include('mouvies/_form.html.twig', {'button_label': 'Enregistrer'}) }}
+
+    <a href="{{ path('mouvies_index') }}">back to list</a>
+
+    {{ include('mouvies/_delete_form.html.twig') }}
+{% endblock %}

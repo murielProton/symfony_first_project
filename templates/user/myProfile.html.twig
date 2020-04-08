@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+    {% block body %}
+    {% block title %}Votre Profile
+    <div>
+    {% if user.FirstName %}
+    {{ user.FirstName }}</h1>
+    {% else %}
+    {{  user.email }}</h1>
+        </div>
+{% endif %}
+{% endblock %}
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Addresse Mail</th>
+                <td>{{ user.email }}</td>
+            </tr>
+            <tr>
+                <th>Prénom </th>
+                <td>{{ user.FirstName }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ user.LastName }}</td>
+            </tr>
+            {#TODO lien avec Mouvie List
+            <tr>
+                <h2>Mes Listes de Films</h2>
+                {% for mouvie_list in mouvie_lists %}
+            <tr>
+                <td>{{ mouvie_list.id }}</td>
+                <td>{{ mouvie_list.name }}</td>
+                <td>
+                    <a href="{{ path('mouvie_list_edit', {'id': mouvie_list.id}) }}">
+                    Modifier Cette Listes</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">pas de liste pour l'instant</td>
+                 <a href="{{ path('mouvie_list_edit', {'id': mouvie_list.id}) }}">
+                    Créer Une Nouvelle Liste</a>
+            </tr>
+        {% endfor %}
+            </tr>
+            #}
+        </tbody>
+    </table>
+    <a href="{{ path('my_profile_edit') }}">Changer Mon Profile</a> 
+
+{% endblock %}

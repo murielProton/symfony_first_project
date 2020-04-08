@@ -1,0 +1,63 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mouvies{% endblock %}
+
+{% block body %}
+    <h1>Mouvies</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Popularity</th>
+                <td>{{ mouvy.popularity }}</td>
+            </tr>
+            <tr>
+                <th>Vote_count</th>
+                <td>{{ mouvy.voteCount }}</td>
+            </tr>
+            <tr>
+                <th>Video</th>
+                <td>{{ mouvy.video ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>Poster_path</th>
+                <td>{{ mouvy.posterPath }}</td>
+            </tr>
+            <tr>
+                <th>Adult</th>
+                <td>{{ mouvy.adult ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>Original_language</th>
+                <td>{{ mouvy.originalLanguage }}</td>
+            </tr>
+            <tr>
+                <th>Original_title</th>
+                <td>{{ mouvy.originalTitle }}</td>
+            </tr>
+            <tr>
+                <th>Genre_ids</th>
+                <td>{{ mouvy.genreIds ? mouvy.genreIds|join(', ') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Overview</th>
+                <td>{{ mouvy.overview }}</td>
+            </tr>
+            <tr>
+                <th>Release_date</th>
+                <td>{{ mouvy.releaseDate }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('mouvies_index') }}">back to list</a>
+     {% for mylist in user.yes %}
+      <br>
+        <a href="{{ path('add_mouvie_to_list', {'id ': mylist.id, 'idMouvie':mouvy.id })}}">Ajouter à la liste {{mylist.name}}</a>
+       
+     {% endfor %}
+      <br>
+    <a href="{{ path('mouvies_edit', {'id':mouvy.id }) }}">edit</a>
+
+    {{ include('mouvies/_delete_form.html.twig') }}
+{% endblock %}

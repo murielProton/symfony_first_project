@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+{% block title %}
+    Changer votre Profile
+	{% if user.FirstName %}
+			{{ user.FirstName }}
+	{% else %}
+			{{  user.email }}
+	{% endif %}
+{% endblock %}
+
+
+
+	{{ include('user/_form.html.twig', {'button_label': 'Enregistrer'}) }}
+
+	{{ include('user/_delete_form.html.twig', {'button_label': 'Suprimer'}) }}
+    
+{% endblock %}
