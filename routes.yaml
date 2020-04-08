@@ -1,0 +1,45 @@
+index:
+    path: /
+    controller: App\Controller\ChefController::index
+
+registration:
+    path: /register
+    controller: App\Controller\RegistrationController::register
+
+connect:
+    path: /login
+    controller: App\Controller\SecurityController::login
+
+user:
+    path: /user
+    controller: App\Controller\UserController::show
+    
+mouvies:
+    path: /mouvies
+    controller: App\Controller\MouviesController::index
+
+mouvie_list:
+    path:      /mouvie/page-{page}
+    controller: App\Controller\MouviesController::mouvieSortAction
+    defaults: 
+        page: 1 
+
+one_mouvie:
+    path: /mouvie/title
+    controller: App\Controller\MouviesController::desplayOneMouvie
+    defaults: 
+        title: title
+
+add_mouvie_to_list:
+    path: /mouvie_list/add{id}_{idMouvie}
+    controller: App\Controller\MouvieListController::addToMouvieList
+
+
+mouvie_tags:
+    path: /mouvie_tags
+    controller: App\Controller\MouvieListController::index
+
+disconnect:
+    path: /disconnect
+    controller: App\Controller\SecurityController::logout
+
