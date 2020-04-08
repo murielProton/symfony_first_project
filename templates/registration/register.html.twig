@@ -1,18 +1,17 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Register{% endblock %}
+{% block title %}Nouveau Profile{% endblock %}
 
 {% block body %}
-    <h1>Register</h1>
+    <h1>Créez Votre Profile</h1>
 
     {{ form_start(registrationForm) }}
         {{ form_row(registrationForm.email) }}
         {{ form_row(registrationForm.plainPassword) }}
-        {{ form_row(registrationForm.BirthDate) }}
         {{ form_row(registrationForm.FirstName) }}
         {{ form_row(registrationForm.LastName) }}
         {{ form_row(registrationForm.agreeTerms) }}
 
-        <button class="btn">Register</button>
+        <button class="btn">Créer</button>
     {{ form_end(registrationForm) }}
 {% endblock %}

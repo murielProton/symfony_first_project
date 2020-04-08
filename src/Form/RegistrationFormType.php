@@ -20,12 +20,12 @@ class RegistrationFormType extends AbstractType
     {
         $builder
             ->add('email')
-            ->add('BirthDate', DateType::class, array(
+            /*->add('BirthDate', DateType::class, array(
                 'widget' => 'choice',
                 'years' => range(date('Y'), date('Y')-100),
                 'months' => range(date('m'), 12),
                 'days' => range(date('d'), 31),
-              ))
+              ))*/
             ->add('FirstName')
             ->add('LastName')
             //->add('FavoritMouvie', SearchType::class,
