@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Fan des frères Lumière!{% endblock %}
+
+{% block body %}
+{% if app.user %}
+    <h1>Bonjour {{ app.user.username }}</h1>
+{% endif %}
+    Rejoignez la communauté des geek de cinéma de Lyon!
+
+{% endblock %}

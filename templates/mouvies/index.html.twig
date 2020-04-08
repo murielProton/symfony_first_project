@@ -1,0 +1,68 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mouvies index{% endblock %}
+
+{% block body %}
+    <h1>Mouvies index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Popularity</th>
+                <th>Poster_path</th>
+                <th>Adult</th>
+                <th>Original_language</th>
+                <th>Original_title</th>
+                <th>Genre_ids</th>
+                <th>Release_date</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for mouvy in mouvies %}
+            <tr>
+                <td>{{ mouvy.popularity }}</td>
+                <td>{{ mouvy.posterPath }}</td>
+                <td>{{ mouvy.adult ? 'Yes' : 'No' }}</td>
+                <td>{{ mouvy.originalLanguage }}</td>
+                <td>{{ mouvy.originalTitle }}</td>
+                <td>{{ mouvy.genreIds ? mouvy.genreIds|join(', ') : '' }}</td>
+                <td>{{ mouvy.releaseDate }}</td>
+                <td>
+                    <a href="{{ path('mouvies_show', {'id': mouvy.id}) }}">More</a>
+                    <a href="{{ path('mouvies_edit', {'id': mouvy.id}) }}">edit</a>
+                 </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="15">no records found</td>
+            </tr>
+        {% endfor %}
+
+
+        <div class="pagination">
+    <div class="pagination-buttons link_blog text-center">
+    {% if pagination.page>1 %}
+       <a href="{{ path(pagination.route, pagination.route_params|merge({'page': 1})) }}"></a>
+       <a href="{{ path(pagination.route, pagination.route_params|merge({'page': pagination.page-1,})) }}"><a>
+    {% endif %}
+
+    {% if posts_count!=0 %}
+       {% for p in range(max(pagination.page-2, 1), min(pagination.page+2, pagination.pages_count)) %}
+          <a{% if p == pagination.page %} class="current-page"
+          {% endif %} 
+          href="{{ path(pagination.route, pagination.route_params|merge({'page': p})) }}">{{ p }}</a>
+       {% endfor %}
+    {% endif %}
+
+    {% if pagination.page<pagination.pages_count %}
+       <a href="{{ path(pagination.route, pagination.route_params|merge({'page': pagination.page+1})) }}">></a>
+       <a href="{{ path(pagination.route, pagination.route_params|merge({'page': pagination.pages_count})) }}">>></a>
+    {% endif %}
+    </div>
+</div>
+        </tbody>
+    </table>
+
+    <a href="{{ path('mouvies_new') }}">Create new</a>
+{% endblock %}
