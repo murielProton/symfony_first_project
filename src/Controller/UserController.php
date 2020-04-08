@@ -11,6 +11,8 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
+use Symfony\Component\HttpFoundation\Session\Session;
 
 /**
  * @Route("/user")
@@ -33,7 +35,6 @@ class UserController extends AbstractController
      */
     public function myProfileEdit(Request $request): Response
     {
-        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
         $form = $this->createForm(UserType::class, $this->getUser());
         $form->handleRequest($request);
 
@@ -54,7 +55,6 @@ class UserController extends AbstractController
      */
     public function index(UserRepository $userRepository): Response
     {
-        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
         return $this->render('user/index.html.twig', [
             'users' => $userRepository->findAll(),
         ]);
@@ -67,6 +67,7 @@ class UserController extends AbstractController
     {
         $user = new User();
         $form = $this->createForm(RegistrationFormType::class, $user);
+    
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -96,7 +97,6 @@ class UserController extends AbstractController
      */
     public function show(User $user): Response
     {
-        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
         return $this->render('user/show.html.twig', [
             'user' => $user,
         ]);
@@ -136,4 +136,21 @@ class UserController extends AbstractController
 
         return $this->redirectToRoute('chef');
     }
+
+    /**
+     * @Route("/delete/myProfile", name="myprofile_delete", methods={"DELETE"})
+     */
+    public function deleteMyProfile(Request $request, SessionInterface $session): Response
+    {
+        if ($this->isCsrfTokenValid('delete'.$this->getUser()->getId(), $request->request->get('_token'))) {
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->remove($this->getUser());
+            $entityManager->flush();
+            $session = $this->get('session');
+            $session = new Session();
+            $session->invalidate();
+        }
+        return $this->redirectToRoute('app_logout');
+    }
+    
 }

@@ -29,11 +29,16 @@ class RegistrationController extends AbstractController
                     $form->get('plainPassword')->getData()
                 )
             );
-           
-            // do anything else you need here, like send an email
-//add list favourit ! or fav. Not a good iddee cause each time the user will register / alter the info it will create a new favourit mouvie list
 
-            return $this->redirectToRoute('');
+            // do anything else you need here, like send an email
+            //add list favourit ! or fav. Not a good iddee cause each time the user will register / alter the info it will create a new favourit mouvie list
+            //Ajouter de la liste fav. :
+            $user->initList();
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($user);
+            $entityManager->flush();
+            
+            return $this->redirectToRoute('app_login');
         }
 
         return $this->render('registration/register.html.twig', [
