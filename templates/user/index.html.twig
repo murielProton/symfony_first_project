@@ -29,8 +29,8 @@
                 <td>{{ user.FirstName }}</td>
                 <td>{{ user.LastName }}</td>
                 <td>
-                    <a href="{{ path('user_show', {'id': user.id}) }}">show</a>
-                    <a href="{{ path('user_edit', {'id': user.id}) }}">edit</a>
+                    <a href="{{ path('user_show', {'id': user.id}) }}">Détails</a>
+                    <a href="{{ path('user_edit', {'id': user.id}) }}">Modifier</a>
                 </td>
             </tr>
         {% else %}
