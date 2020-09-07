@@ -1,3 +1,5 @@
+Ce projet devait en faite être développé à deux personne. Suite un des problèmes techniques du au confinement, ma binômes s'est désitée. J'ai rendu le projet seule le 10 avril 2020.
+
 Un PDF, rédigé en anglais, m'imposait certaines règles communes avec les autres élèves.
 Je devait utiliser le framework Symfony, avec twig et html.
 Ma base de donnée devait contenir au moins une relation entre objet de "one to many".
